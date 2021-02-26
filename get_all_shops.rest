@@ -1,13 +1,11 @@
-GET http://localhost:3001
+POST http://localhost:3001/api/shops
 Content-Type: application/json
 
 {
-  "keyword": "yakiniku"
+  "keyword": "焼肉",
+  "lat": "34.5828432",
+  "lng": "135.5231292"
 }
 ###
-POST http://localhost:3001
-Content-Type: application/json
-
-{
-  "keyword": "yakiniku"
-}
+GET http://localhost:3001/api/genres
+Cotents-Type: application/json
