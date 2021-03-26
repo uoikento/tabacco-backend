@@ -1,16 +1,25 @@
-const arerasRouter = require('express').Router()
+const areasRouter = require('express').Router()
 const axios = require('axios')
+const querystring = require('querystring')
 
-const getAreas = () => {
-  const key = process.env.API_KEY
-  const baseUrl = `http://webservice.recruit.co.jp/hotpepper/large_area/v1/?key=${key}&format=json`
+const getAreas = (large_area, keyword) => {
+  const params = {
+    key: process.env.API_KEY,
+    format: 'json',
+    large_area: large_area,
+    keyword: `${keyword}`
+  }
+
+  const result = querystring.stringify(params)
+  const baseUrl = `http://webservice.recruit.co.jp/hotpepper/middle_area/v1/?${result}`
+  console.log(baseUrl)
   return (
     axios
       .get(baseUrl)
       .then(res => {
         if (res) {
-          console.log(res.data)
-          return res.data["results"]["large_area"]
+          console.log(res.data["results"])
+          return res.data["results"]
         } else {
           res.status(404)
         }
@@ -20,11 +29,14 @@ const getAreas = () => {
       })
   )
 }
-arerasRouter.get('/', (req, res) => {
-  getAreas()
+
+areasRouter.post('/', (req, res) => {
+  const body = req.body
+  console.log(body)
+  getAreas(body.large_area, body.keyword)
     .then(areas => {
     res.json(areas)
   })
 })
 
-module.exports = arerasRouter
+module.exports = areasRouter

@@ -1,0 +1,7 @@
+POST  http://localhost:3001/api/areas
+Content-Type: application/json
+
+{
+  "large_area": "Z011",
+  "keyword": "築地"
+}

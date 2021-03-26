@@ -4,7 +4,8 @@ Content-Type: application/json
 {
   "keyword": "焼肉",
   "lat": "34.5828432",
-  "lng": "135.5231292"
+  "lng": "135.5231292",
+  "middle_area": "Y005, Y006"
 }
 ###
 GET http://localhost:3001/api/genres
