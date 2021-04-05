@@ -9,7 +9,9 @@ const getAreas = (large_area, keyword) => {
     large_area: large_area,
     keyword: `${keyword}`
   }
-
+  if (params.keyword == 'undefined') {
+    delete params.keyword
+  }
   const result = querystring.stringify(params)
   const baseUrl = `http://webservice.recruit.co.jp/hotpepper/middle_area/v1/?${result}`
   console.log(baseUrl)
